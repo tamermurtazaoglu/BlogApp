@@ -5,14 +5,17 @@ import com.tamerm.blog_app.service.PostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Slf4j
 public class PostServiceImpl implements PostService {
 
-    private final List<Post> posts = new ArrayList<>();
+    private final List<Post> posts;
+
+    public PostServiceImpl(List<Post> posts) {
+        this.posts = posts;
+    }
 
     @Override
     public Post createPost(Post post) {
@@ -24,6 +27,5 @@ public class PostServiceImpl implements PostService {
     @Override
     public void logPostCount() {
         log.info("Total number of posts: {}", posts.size());
-        System.out.println("Total number of posts: " + posts.size());
     }
 }
